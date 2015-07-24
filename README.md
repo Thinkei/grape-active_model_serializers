@@ -96,6 +96,11 @@ namespace 'foo', serializer: BarSerializer do
   get "/fancy_homes", root: 'world', each_serializer: FancyHomesSerializer
   ...
   end
+
+  # render supports adapter vs serializer options
+  get "/fancy_homes"
+    render FancyHome.find(123), adapter_options: { include: ["people"], ... }, serializer_options: { ... }
+  end
 end
 ```
 
@@ -106,16 +111,6 @@ end
 get "/homes"
   collection = Home.all
   render collection, { meta: { page: 5, current_page: 3 }, meta_key: :pagination_info }
-end
-```
-
-### Support for `default_serializer_options`
-
-```ruby
-helpers do
-  def default_serializer_options
-    {only: params[:only], except: params[:except]}
-  end
 end
 ```
 
