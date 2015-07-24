@@ -43,7 +43,7 @@ describe Grape::ActiveModelSerializers do
 
     it 'infers the serializer' do
       get '/home'
-      expect(subject).to eql "{\"user\":{\"first_name\":\"JR\",\"last_name\":\"HE\"}}"
+      expect(subject).to eql "{\"data\":{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"JR\",\"last_name\":\"HE\"}}}"
     end
   end
 
@@ -54,7 +54,7 @@ describe Grape::ActiveModelSerializers do
     end
 
     get '/users'
-    expect(subject).to eql "{\"users\":[{\"first_name\":\"JR\",\"last_name\":\"HE\"},{\"first_name\":\"JR\",\"last_name\":\"HE\"}]}"
+    expect(subject).to eql "{\"data\":[{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"JR\",\"last_name\":\"HE\"}},{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"JR\",\"last_name\":\"HE\"}}]}"
   end
 
   context 'models with compound names' do
@@ -64,7 +64,7 @@ describe Grape::ActiveModelSerializers do
       end
 
       get '/home'
-      expect(subject).to eql "{\"blog_post\":{\"title\":\"Grape AM::S Rocks!\",\"body\":\"Really, it does.\"}}"
+      expect(subject).to eql "{\"data\":{\"id\":\"1\",\"type\":\"blog_posts\",\"attributes\":{\"title\":\"Grape AM::S Rocks!\",\"body\":\"Really, it does.\"}}}"
     end
 
     it "generates the proper 'root' node for serialized arrays" do
@@ -74,7 +74,7 @@ describe Grape::ActiveModelSerializers do
       end
 
       get '/blog_posts'
-      expect(subject).to eql "{\"blog_posts\":[{\"title\":\"Grape AM::S Rocks!\",\"body\":\"Really, it does.\"},{\"title\":\"Grape AM::S Rocks!\",\"body\":\"Really, it does.\"}]}"
+      expect(subject).to eql "{\"data\":[{\"id\":\"1\",\"type\":\"blog_posts\",\"attributes\":{\"title\":\"Grape AM::S Rocks!\",\"body\":\"Really, it does.\"}},{\"id\":\"1\",\"type\":\"blog_posts\",\"attributes\":{\"title\":\"Grape AM::S Rocks!\",\"body\":\"Really, it does.\"}}]}"
     end
   end
 
@@ -86,7 +86,7 @@ describe Grape::ActiveModelSerializers do
     end
 
     get '/admin/jeff'
-    expect(subject).to eql "{\"user\":{\"first_name\":\"Jeff\",\"last_name\":null}}"
+    expect(subject).to eql "{\"data\":{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"Jeff\",\"last_name\":null}}}"
   end
 
   context 'route is in a namespace' do
@@ -99,7 +99,7 @@ describe Grape::ActiveModelSerializers do
       end
 
       get '/admin/jeff'
-      expect(subject).to eql "{\"admin\":[{\"first_name\":\"Jeff\",\"last_name\":null},{\"first_name\":\"Jeff\",\"last_name\":null}]}"
+      expect(subject).to eql "{\"data\":[{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"Jeff\",\"last_name\":null}},{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"Jeff\",\"last_name\":null}}]}"
     end
   end
 
@@ -111,7 +111,7 @@ describe Grape::ActiveModelSerializers do
       end
 
       get '/people'
-      expect(subject).to eql "{\"people\":[{\"first_name\":\"Jeff\",\"last_name\":null},{\"first_name\":\"Jeff\",\"last_name\":null}]}"
+      expect(subject).to eql "{\"data\":[{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"Jeff\",\"last_name\":null}},{\"id\":\"1\",\"type\":\"users\",\"attributes\":{\"first_name\":\"Jeff\",\"last_name\":null}}]}"
     end
   end
 end

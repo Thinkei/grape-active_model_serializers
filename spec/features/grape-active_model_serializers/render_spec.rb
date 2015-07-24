@@ -9,10 +9,10 @@ describe '#render' do
     app.formatter :json, Grape::Formatter::ActiveModelSerializers
   end
 
-  def get_resource_with(meta)
+  def get_resource_with(options)
     url = "/#{SecureRandom.hex}"
     app.get(url) do
-      render User.new(first_name: 'Jeff'), meta
+      render User.new(first_name: 'Jeff'), options
     end
     get url
     JSON.parse last_response.body

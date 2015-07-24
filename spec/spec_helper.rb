@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'bundler'
 Bundler.setup :default, :test
 
+require 'rails'
 require 'active_model_serializers'
 require 'active_support/core_ext/hash/conversions'
 require 'active_support/json'
@@ -14,5 +15,7 @@ require 'grape-active_model_serializers'
 RSpec.configure do |config|
   config.include Rack::Test::Methods
 end
+
+ActiveModel::Serializer.config.adapter = :json_api
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

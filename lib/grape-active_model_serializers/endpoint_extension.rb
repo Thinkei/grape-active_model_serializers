@@ -35,8 +35,8 @@ module Grape
       end
     end
 
-    def render(resources, meta = {})
-      env['ams_meta'] = meta
+    def render(resources, options={})
+      env['ams_options'] = options
       resources
     end
 
