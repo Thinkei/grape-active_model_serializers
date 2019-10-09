@@ -47,7 +47,7 @@ module Grape
           options[:adapter_options][:include] = options[:include] if options[:include]
 
           serializer_instance = serializer.new(resource, options[:serializer_options])
-          ActiveModel::Serializer::Adapter.create(serializer_instance, options[:adapter_options])
+          ActiveModelSerializers::Adapter.create(serializer_instance, options[:adapter_options])
         end
 
         def build_options_from_endpoint(endpoint)
