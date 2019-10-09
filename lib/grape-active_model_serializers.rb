@@ -1,4 +1,5 @@
 require 'active_model_serializers'
+require 'active_model_serializers/adapter'
 require 'grape'
 require 'grape-active_model_serializers/endpoint_extension'
 require 'grape-active_model_serializers/formatter'
