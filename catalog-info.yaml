@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: grape-active_model_serializers
+  tags:
+    - external
+    - fork
+    - public
+    - ruby
+  annotations:
+    github.com/project-slug: Thinkei/grape-active_model_serializers
+spec:
+  type: service
+  system: pre-payroll
+  lifecycle: production
